@@ -7,13 +7,14 @@ import MySQLdb
 from xml.dom.minidom import parseString
 from urllib2 import URLError
 
-# Import from anpther python file to call  ( printMenue and readingFunction) function  ....
+# Import from another python file to call  ( printMenue and readingFunction) function  ....
 from MainFunctions import printMenue
 from MainFunctions import readingXMLFile
 from MainFunctions import getNewsFeedsURL
 from RssDBFunctions import connectDB
 from RssDBFunctions import createTable
 from RssDBFunctions import insertValuesInDB
+from RssDBFunctions import fetchFromServer
 
 #--------------------------------------------- FUNCTION TO PRINT MENU ----------------
 printMenue()
@@ -36,7 +37,8 @@ while (chossenFeed != "11"):
             
             
             # ------------------ Creating Database Table -----------------------------------------
-            createTable()   # should be called one time to not drop and re create table every time
+            # should be called one time to not drop and re create table every time
+            createTable()  
             # ------------------------------------------------------------------------------------
             
             xmlDataTitle, xmlDataDescription = readingXMLFile (file,urlLink,BBC_News_Feed_Name)
@@ -56,6 +58,23 @@ while (chossenFeed != "11"):
             print "EXEPTION:", e.args
         except NameError, e:
             print "EXEPTION:", e.args
+
+
+            # --------------READ Operation ----------
+            
+
+"""CREATE TABLE RSSFEEDS (
+             FEED_CATEGORY  CHAR(100) NOT NULL,
+             TAG_TITLE  CHAR(200) NOT NULL,
+             DESCRIPTION  CHAR(200),
+             URL_LINK VARCHAR(250)
+"""
+
+fetchFromServer()
+
+
+
+
 
 
 """

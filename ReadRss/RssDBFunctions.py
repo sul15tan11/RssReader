@@ -78,3 +78,47 @@ def insertValuesInDB(BBC_News_Feed_Name, title, xmlDataDescription, urlLink):
     # disconnect from server
     db.close()
     return
+
+def fetchFromServer():
+    import MySQLdb
+    
+    # Open database connection
+    db = MySQLdb.connect("localhost","root","","TESTDB" )
+    
+    # prepare a cursor object using cursor() method
+    cursor = db.cursor()
+    
+    # Prepare SQL query to INSERT a record into the database.
+    sql = "SELECT * FROM RSSFEEDS \
+           WHERE 1 LIMIT 0,3 "
+    try:
+       # Execute the SQL command
+       cursor.execute(sql)
+       # Fetch all the rows in a list of lists.
+       results = cursor.fetchall()
+       for row in results:
+          FEED_CATEGORY = row[0]
+          TAG_TITLE = row[1]
+          DESCRIPTION = row[2]
+          URL_LINK = row[3]
+    
+          
+          
+          # Now print fetched result
+          print "--------------------------------------------------------------------------------------------------------------------------------------"
+          print " FEED_CATEGORY : ", FEED_CATEGORY  
+          print " TAG_TITLE : ", TAG_TITLE  
+          print " DESCRIPTION : ", DESCRIPTION  
+          print " URL_LINK : ", URL_LINK  
+    
+          #print "----------------------------------------------------------"
+          #print "fname=%s,lname=%s,age=%s,sex=%s" % \
+          #       (FEED_CATEGORY, TAG_TITLE, DESCRIPTION, URL_LINK )
+          #print "----------------------------------------------------------"
+    
+    except:
+       print "Error: unable to fecth data"
+    
+    # disconnect from server
+    db.close()
+

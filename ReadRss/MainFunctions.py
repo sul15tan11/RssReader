@@ -131,10 +131,11 @@ def readingXMLFile(file,urlLink,BBC_News_Feed_Name):
             print "Description :", xmlDataDescription
                  #print out the xml Link and data in this format: <tag>data</tag>
             print "Link :", xmlDataLink,"\n"
+            
+            # ------  insert values from xml file to RssFeeds Table   
+            insertValuesInDB(BBC_News_Feed_Name, xmlDataTitle,xmlDataDescription,xmlDataLink)
         
         
         
-        # ------  insert values from xml file to RssFeeds Table   
-        insertValuesInDB(BBC_News_Feed_Name, xmlDataTitle,xmlDataDescription,urlLink)
               
     return (xmlDataTitle,xmlDataDescription )
