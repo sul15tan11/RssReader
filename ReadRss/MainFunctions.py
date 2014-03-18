@@ -125,7 +125,7 @@ def readingXMLFile(file,urlLink,BBC_News_Feed_Name):
         
         else:    
             #print out the xml tag and data in this format: <tag>data</tag>
-            print "Tiltel :", i, xmlDataTitle
+            print "Title :", i, xmlDataTitle
             
              #print out the xml tag and data in this format: <tag>data</tag>
             print "Description :", xmlDataDescription

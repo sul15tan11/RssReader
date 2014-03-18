@@ -37,8 +37,12 @@ while (chossenFeed != "11"):
             
             
             # ------------------ Creating Database Table -----------------------------------------
+            
             # should be called one time to not drop and re create table every time
-            createTable()  
+            
+            
+            #createTable()  
+           
             # ------------------------------------------------------------------------------------
             
             xmlDataTitle, xmlDataDescription = readingXMLFile (file,urlLink,BBC_News_Feed_Name)

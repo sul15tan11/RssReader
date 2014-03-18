@@ -91,6 +91,12 @@ def fetchFromServer():
     # Prepare SQL query to INSERT a record into the database.
     sql = "SELECT * FROM RSSFEEDS \
            WHERE 1 LIMIT 0,3 "
+ 
+   
+#    sql = "SELECT * FROM RSSFEEDS \
+#          WHERE FEED_CATEGORY = 'Politics' "
+    
+    
     try:
        # Execute the SQL command
        cursor.execute(sql)
