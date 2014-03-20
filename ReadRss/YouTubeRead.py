@@ -9,23 +9,25 @@ import urllib
 #import easy to use xml parser called minidom:
 from xml.dom.minidom import parseString
 from urllib2 import URLError
-
-# Import from anpther python file to call  ( printMenue and readingFunction) function  ....
-
-#all these imports are standard on most modern python implementations  
-
-# if you want to open file in a directory
-# file = open('rss.xml')
-#  print file.read()
-
-
-#download the file:
-#file = urllib2.urlopen('http://www.somedomain.com/somexmlfile.xml')
-
-# or
+from xml.dom import minidom
 
 #-----------------------------------------------------------------------------------------------------------
 #--------------------------------------------- FUNCTION TO PRINT MENU ----------------
+def printMenue():
+   # Add both the parameters and return them."
+
+    print " \n "
+    print " ---------------------------------  "
+    print " |  1- Most recent                | "
+    print " |  2- Most viewed                | "
+    print " |  3- Top rated                  | "
+    print " |  4- Most discussed             | "
+    print " |  5- Top favorites              | "
+    print " |  6- Most linked                | "
+    print " |  7- Recently featured          | "
+    print " |  8- Most responded             | "
+    print " ---------------------------------  "
+    return 
 
 def readingXMLFile(file,urlLink):
     
@@ -38,7 +40,7 @@ def readingXMLFile(file,urlLink):
     dom = parseString(data)
     
     #-------------- 
-    
+    print urlLink
     
     from xml.dom import minidom
     # To count the number of 
@@ -48,11 +50,10 @@ def readingXMLFile(file,urlLink):
     print " \n\n Number of News Feeds in [ ",numOfINews
     
     
-    
-    
     # this variable to syncronise the category since there are two category in each item
     # so it skips the category which has a link instead of category name
     catSync =1
+    pubDateSync=1
     #------------------------------
     
     
@@ -63,7 +64,7 @@ def readingXMLFile(file,urlLink):
         #retrieve the first xml tag (<tag>data</tag>) that the parser finds with name title:
         #using [i+1] to overcome (0,1) coz the first two title are for "most popular"
         
-        # it can be used ( if i ==1 or 0) and start with [1] instead of [i+1]
+        # it can be used ( if i ==0 or 1) and else will start with [2] instead of [i+1]
         xmlTagTitle = dom.getElementsByTagName('title')[i+1].toxml()
         #strip off the tag (<title>data</title>  --->   data) 
         xmlDataTitle = xmlTagTitle.replace('<title>','').replace('</title>','').encode('utf-8').strip()
@@ -72,6 +73,10 @@ def readingXMLFile(file,urlLink):
         #strip off the tag (<link>data</link>  --->   data):
         xmlDataLink = xmlTagLink.replace('<link>','').replace('</link>','').encode('utf-8').strip()
         xmlVidID = xmlTagLink.replace('<link>http://www.youtube.com/watch?v=','').replace('&amp;feature=youtube_gdata</link>','').encode('utf-8').strip()
+        
+        
+
+        
         
         xmlTagcategory = dom.getElementsByTagName('category')[i+catSync]
     # xmlDataDescription = xmlTagDescription.replace('<description>','').replace('</description>','')   
@@ -89,19 +94,76 @@ def readingXMLFile(file,urlLink):
             #print out the xml tag and data in this format: <tag>data</tag>
             print "Tiltel :", i, xmlDataTitle
             print "xmlVidID :", xmlVidID
+            print "http://gdata.youtube.com/feeds/api/videos/"+xmlVidID
             print "Link :", xmlDataLink
+            
+            #---- using (i-1) coz the i the loop will be (numOfINews+1) out of range and <pubDate> is less than others tags
+            xmlPubDate = dom.getElementsByTagName('pubDate')[i-1].toxml()
+            #strip off the tag (<link>data</link>  --->   data):
+            xmlPubDate = xmlPubDate.replace('<pubDate>','').replace('</pubDate>','').encode('utf-8').strip()
+            print "Publishing date :", xmlPubDate
+            
+            xmlPubDate = dom.getElementsByTagName('pubDate')[i-1]
+            print "Publishing date:", xmlPubDate.firstChild.nodeValue 
+            
             #print "Description :", xmlDatacategory
             print "category :", xmlTagcategory.firstChild.nodeValue
             print "\n"
             catSync+=1;
             
-            
-            
-            
-
+    getVidDetails(xmlVidID)    
 
     return xmlDataTitle
 # --------------------------------------------------------------------------
+
+def getVidDetails(xmlVidID):
+    
+        
+    urlLink = "http://gdata.youtube.com/feeds/api/videos/"+xmlVidID
+   
+    file = urllib2.urlopen(urlLink)
+    
+    
+    data = file.read()
+        #close file because we don't need it anymore:
+    file.close()
+          
+        #parse the xml you downloaded
+    dom = parseString(data)
+    
+    
+    #######
+    ## 1 ## use ( dom ) dom.getElementsByTagName('title')[0].toxml() or to use replace fun need .toxml() coz u ll not get the value
+    #######
+    
+    
+    xmldoc = minidom.parse(urllib2.urlopen(urlLink))
+    
+    xmlTagTitle = dom.getElementsByTagName('title')[0].toxml()
+            #strip off the tag (<title>data</title>  --->   data) 
+    xmlDataTitle = xmlTagTitle.replace('<title type="text">','').replace('</title>','').encode('utf-8').strip()
+    
+    vidURL= "http://www.youtube.com/watch?v="+xmlVidID 
+    vidCommentsURL = "http://gdata.youtube.com/feeds/api/videos/"+xmlVidID+"/comments" 
+
+    print "Title:", xmlDataTitle   
+    print "Video ID:", xmlVidID 
+    print "Video URL:", vidURL 
+    print "Video Comments URL:", vidCommentsURL 
+    
+    itemlist = xmldoc.getElementsByTagName('category') 
+    print "category:", itemlist[1].attributes['label'].value
+    
+    xmlPubDate = dom.getElementsByTagName('published')[0]
+    print "Publishing date:", xmlPubDate.firstChild.nodeValue 
+    
+    # get video description 
+    xmlTagAbout = xmldoc.getElementsByTagName('content')[0]
+    print "About :", xmlTagAbout.firstChild.nodeValue
+
+
+ 
+    return 
 
 def getNewsFeedsURL( chossenFeed ):
     
@@ -148,26 +210,4 @@ def getNewsFeedsURL( chossenFeed ):
 
 
 
-# --------
-
-
-
-
-"""
-url = 'http://10.0.2.2/android_connect/create_calls.php'
-user_agent = 'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)'
-values = {'name' : 'Michael Foord',
-          'location' : 'Northampton',
-          'language' : 'Python' }
-headers = { 'User-Agent' : user_agent }
-
-
-
-
-data = urllib.urlencode(values)
-req = urllib2.Request(url, data, headers)
-response = urllib2.urlopen(req)
-the_page = response.read()
-
-
-"""
+# -------

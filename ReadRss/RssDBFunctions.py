@@ -49,9 +49,14 @@ def createTable():
 
 def insertValuesInDB(BBC_News_Feed_Name, title, xmlDataDescription, urlLink):
      
-    # Open database connection
-    db = MySQLdb.connect("localhost","root","","TESTDB" )
-    
+     
+    try:
+        # Open database connection
+        db = MySQLdb.connect("localhost","root","","TESTDB" )
+
+    except :
+          print "Error: unable to connect MySQLdb"
+
     # prepare a cursor object using cursor() method
     cursor = db.cursor()
     

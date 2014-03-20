@@ -8,7 +8,7 @@ from xml.dom.minidom import parseString
 from urllib2 import URLError
 
 # Import from another python file to call  ( printMenue and readingFunction) function  ....
-from MainFunctions import printMenue
+from YouTubeRead import printMenue
 from YouTubeRead import readingXMLFile
 from MainFunctions import getNewsFeedsURL
 from RssDBFunctions import connectDB
@@ -27,6 +27,11 @@ chossenFeed=0
        # urlLink, BBC_News_Feed_Name = getNewsFeedsURL(chossenFeed)  # return multiple values from getNewsFeedsURL Function 
         # --------------------------------------------------------------------------------------
 urlLink= "http://gdata.youtube.com/feeds/api/standardfeeds/most_viewed?alt=rss"
+#urlLink= "http://gdata.youtube.com/feeds/api/standardfeeds/most_recent?alt=rss"
+#urlLink= "http://gdata.youtube.com/feeds/api/standardfeeds/most_discussed?alt=rss"
+#urlLink = "http://gdata.youtube.com/feeds/api/standardfeeds/top_favorites?alt=rss"
+
+
 
       
 try:
@@ -39,7 +44,7 @@ try:
             # should be called one time to not drop and re create table every time
             
             
-            #createTable()  
+        #createTable()  
            
             # ------------------------------------------------------------------------------------
             
