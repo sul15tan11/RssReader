@@ -87,14 +87,14 @@ def readingXMLFile(file,urlLink):
    
         if i == 0:
                 print "-----------------------------------------------------------------------------------------------"
-                print "------------------------------------ [", xmlDataTitle,"] -------------------------------------"
+                print "------------------------------------- [", xmlDataTitle,"] --------------------------------------"
                 print "-----------------------------------------------------------------------------------------------"
         
         else:    
             #print out the xml tag and data in this format: <tag>data</tag>
             print "Tiltel :", i, xmlDataTitle
             print "xmlVidID :", xmlVidID
-            print "http://gdata.youtube.com/feeds/api/videos/"+xmlVidID
+            print "Link xml: http://gdata.youtube.com/feeds/api/videos/"+xmlVidID
             print "Link :", xmlDataLink
             
             #---- using (i-1) coz the i the loop will be (numOfINews+1) out of range and <pubDate> is less than others tags
