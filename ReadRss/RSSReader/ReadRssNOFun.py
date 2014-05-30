@@ -40,7 +40,7 @@ def printMenu():
     print " |  6- Health                    | "
     print " |  7- Education & Family        | "
     print " |  8- Science & Environment     | "
-    print " |  9- Technology                |"
+    print " |  9- Technology                | "
     print " |  10- Entertainment & Arts     | "
     print " ---------------------------------  "
     return     

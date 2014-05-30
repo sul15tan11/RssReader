@@ -43,7 +43,7 @@ def getNewsFeedsURL( chossenFeed ):
     
     if chossenFeed == "1":
             urlLink = "http://feeds.bbci.co.uk/news/rss.xml"
-            BBC_News_Feed_Name ="Top Stories"
+            BBC_News_Feed_Name ="TopStories"
     elif chossenFeed =="2":
              urlLink = "http://feeds.bbci.co.uk/news/world/rss.xml"
              BBC_News_Feed_Name ="World"
@@ -61,16 +61,16 @@ def getNewsFeedsURL( chossenFeed ):
             BBC_News_Feed_Name ="Health"
     elif chossenFeed =="7":
             urlLink = "http://feeds.bbci.co.uk/news/education/rss.xml"
-            BBC_News_Feed_Name ="Education & Family"
+            BBC_News_Feed_Name ="EducationFamily"
     elif chossenFeed =="8":
             urlLink = "http://feeds.bbci.co.uk/news/science_and_environment/rss.xml"
-            BBC_News_Feed_Name ="Science & Environment"
+            BBC_News_Feed_Name ="ScienceEnvironment"
     elif chossenFeed =="9":
             urlLink = "http://feeds.bbci.co.uk/news/technology/rss.xml"
             BBC_News_Feed_Name ="Technology"
     elif chossenFeed =="10":
             urlLink = "http://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml"
-            BBC_News_Feed_Name ="Entertainment & Arts"
+            BBC_News_Feed_Name ="EntertainmentArts"
     return (urlLink, BBC_News_Feed_Name)
 
 

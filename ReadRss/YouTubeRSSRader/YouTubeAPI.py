@@ -10,7 +10,11 @@ from urllib2 import URLError
 # Import from another python file to call  ( printMenue and readingFunction) function  ....
 from YouTubeRead import printMenue
 from YouTubeRead import readingXMLFile
-from MainFunctions import getNewsFeedsURL
+
+
+#--------------------------------  FUNCTIONS NOT USED CAN BE MODIFIED TO BE USED FOR YOUTUPE API ---------
+
+#from MainFunctions import getNewsFeedsURL
 from RssDBFunctions import connectDB
 from RssDBFunctions import createTable
 from RssDBFunctions import insertValuesInDB

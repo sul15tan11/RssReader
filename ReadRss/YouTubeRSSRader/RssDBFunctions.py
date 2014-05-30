@@ -35,12 +35,11 @@ def createTable():
     
     # Create table as per requirement
     sql = """CREATE TABLE RSSFEEDS (
-            feed_id INTEGER unsigned AUTO_INCREMENT PRIMARY KEY,
              FEED_CATEGORY  CHAR(100) NOT NULL,
              TAG_TITLE  CHAR(200) NOT NULL,
              DESCRIPTION  CHAR(200),
              URL_LINK VARCHAR(250)
-              ) ENGINE=InnoDB DEFAULT CHARSET=latin1;"""
+              )"""
     
     cursor.execute(sql)
     
@@ -73,14 +72,13 @@ def insertValuesInDB(BBC_News_Feed_Name, title, xmlDataDescription, urlLink):
     try:
        # Execute the SQL command
        # cursor.execute(sql)   
-       cursor.execute('insert into RSSFEEDS values(0, "%s", "%s", "%s", "%s")' % \
+       cursor.execute('insert into RSSFEEDS values("%s", "%s", "%s", "%s")' % \
             (BBC_News_Feed_Name,title,xmlDataDescription,urlLink ))    
        
        # Commit your changes in the database
        db.commit()
-    except NameError,e:
+    except e:
        print "--------------------------";
-
        # Rollback in case there is any error
        db.rollback()
     

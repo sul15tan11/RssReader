@@ -2,6 +2,8 @@
 import urllib2
 import urllib
 import MySQLdb
+import logging # means of tracking events that happen when some software runs. 
+
  
 #import easy to use xml parser called minidom:
 from xml.dom.minidom import parseString
@@ -17,15 +19,16 @@ from RssDBFunctions import insertValuesInDB
 from RssDBFunctions import fetchFromServer
 
 #--------------------------------------------- FUNCTION TO PRINT MENU ----------------
+
 printMenue()
 
 chossenFeed=0
 
 while (chossenFeed != "11"):
 
+
         chossenFeed = raw_input("  Enter your favourite News feed: ");
-        
-        
+    
         # ----- To get the NewsFeed category and the URL for xml file containing all news feeds
         urlLink, BBC_News_Feed_Name = getNewsFeedsURL(chossenFeed)  # return multiple values from getNewsFeedsURL Function 
         # --------------------------------------------------------------------------------------
@@ -88,8 +91,6 @@ values = {'name' : 'Michael Foord',
           'location' : 'Northampton',
           'language' : 'Python' }
 headers = { 'User-Agent' : user_agent }
-
-
 
 
 data = urllib.urlencode(values)
