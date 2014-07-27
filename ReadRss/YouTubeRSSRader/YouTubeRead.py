@@ -71,7 +71,7 @@ def readingXMLFile(file,urlLink):
         
         xmlTagLink = dom.getElementsByTagName('link')[i+1].toxml()
         #strip off the tag (<link>data</link>  --->   data):
-        xmlDataLink = xmlTagLink.replace('<link>','').replace('</link>','').encode('utf-8').strip()
+        xmlDataLink = xmlTagLink.replace('<link>','').replace('&amp;feature=youtube_gdata</link>','').encode('utf-8').strip()
         xmlVidID = xmlTagLink.replace('<link>http://www.youtube.com/watch?v=','').replace('&amp;feature=youtube_gdata</link>','').encode('utf-8').strip()
         
         

@@ -36,7 +36,23 @@ urlLink= "http://gdata.youtube.com/feeds/api/standardfeeds/most_viewed?alt=rss"
 #urlLink = "http://gdata.youtube.com/feeds/api/standardfeeds/top_favorites?alt=rss"
 
 
+# ========================= GETTING FEEDS FORM THE MOST POBULAR YOUTUBE VIDEOS IN SPECIFIC REGION "SA" 
+urlLink = "https://gdata.youtube.com/feeds/api/standardfeeds/sa/most_popular?alt=rss&time=all_time"
 
+
+
+
+      # https://gdata.youtube.com/feeds/api/videos/-/Foreign Language
+      #URL notation:
+      #https://gdata.youtube.com/feeds/api/videos/-/bass/fishing?v=2
+      #category parameter:
+      #https://gdata.youtube.com/feeds/api/videos?category=bass%2Cfishing&v=2
+      
+      #https://developers.google.com/youtube/2.0/developers_guide_protocol_video_feeds
+      
+    #URL for feed of most popular entertainment videos in France:
+    #https://gdata.youtube.com/feeds/api/standardfeeds/FR/most_popular_Entertainment
+      
       
 try:
              

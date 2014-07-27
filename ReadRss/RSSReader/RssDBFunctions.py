@@ -25,7 +25,9 @@ def createTable():
 
     
     # Open database connection
-    db = MySQLdb.connect("localhost","root","","TESTDB" )
+ #   db = MySQLdb.connect("localhost","root","","TESTDB" )
+    db = MySQLdb.connect("localhost","root","","experimentrssdb" )
+
     
     # prepare a cursor object using cursor() method
     cursor = db.cursor()
@@ -54,7 +56,8 @@ def insertValuesInDB(BBC_News_Feed_Name, title, xmlDataDescription, urlLink):
 
     try:
         # Open database connection
-        db = MySQLdb.connect("localhost","root","","TESTDB" )
+        #db = MySQLdb.connect("localhost","root","","TESTDB" )
+        db = MySQLdb.connect("localhost","root","","experimentrssdb" )
 
     except :
           print "insertValuesInDB Function Error: unable to connect MySQLdb"
@@ -92,8 +95,9 @@ def fetchFromServer():
     import MySQLdb
     
     # Open database connection
-    db = MySQLdb.connect("localhost","root","","TESTDB" )
-    
+    # db = MySQLdb.connect("localhost","root","","TESTDB" )    
+    db = MySQLdb.connect("localhost","root","","experimentrssdb" )
+
     # prepare a cursor object using cursor() method
     cursor = db.cursor()
     
